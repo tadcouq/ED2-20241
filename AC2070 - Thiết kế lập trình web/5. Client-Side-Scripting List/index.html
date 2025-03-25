@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorted List</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>list trộn (original-list)</h2>
+    <ul id="original-list">
+        <li>Item 5</li>
+        <li class="red">Item 8</li>
+        <li>Item 2</li>
+        <li class="red">Item 3</li>
+        <li>Item 10</li>
+        <li class="red">Item 6</li>
+        <li>Item 1</li>
+        <li>Item 9</li>
+        <li>Item 4</li>
+        <li>Item 7</li>
+    </ul>
+    
+    <h2>sorted list</h2>
+    <ul id="sorted-list"></ul>
+    <ul id="red-list"></ul>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let originalList = document.querySelectorAll("#original-list li");
+            let items = Array.from(originalList);
+            
+            // xếp theo thứ tự từ bé đến lớn
+            items.sort((a, b) => a.textContent.localeCompare(b.textContent, undefined, { numeric: true }));
+            
+            let sortedList = document.getElementById("sorted-list");
+            let redList = document.getElementById("red-list");
+            
+            items.forEach(item => {
+                if (item.classList.contains("red")) {
+                    redList.appendChild(item.cloneNode(true));
+                } else {
+                    sortedList.appendChild(item.cloneNode(true));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
